@@ -41,26 +41,9 @@ Octo lives in The Reef, answers questions about OpenOctopus, helps newcomers get
 
 ## Planned Architecture
 
-```
-┌──────────────────────┐     ┌──────────────────────┐
-│   Discord (The Reef) │     │   OpenOctopus Core    │
-│                      │     │                      │
-│  User messages ──────┼────►│  ink gateway (WS)    │
-│                      │     │  ↓                   │
-│  ◄───── Responses ───┼─────│  Summon engine        │
-│                      │     │  (Octo SOUL.md)      │
-└──────────────────────┘     └──────────────────────┘
-         ▲
-         │
-┌────────┴─────────────┐
-│      reef-bot         │
-│                      │
-│  Discord.js client   │
-│  Slash commands      │
-│  Event handlers      │
-│  WS RPC to ink       │
-└──────────────────────┘
-```
+<p align="center">
+  <img src="docs/images/architecture.png" alt="reef-bot Architecture" width="800">
+</p>
 
 ## Planned Tech Stack
 
