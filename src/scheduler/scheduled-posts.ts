@@ -1,8 +1,9 @@
-import type { Client, TextChannel } from "discord.js";
+import type { Client } from "discord.js";
 import { EmbedBuilder } from "discord.js";
 import { createConsola } from "consola";
 import type { Config } from "../config.js";
 import type { Scheduler } from "./scheduler.js";
+import { sendToChannel } from "../discord/send-to-channel.js";
 
 const log = createConsola({ defaults: { tag: "scheduled-posts" } });
 
@@ -68,17 +69,4 @@ export function registerScheduledPosts(scheduler: Scheduler, client: Client, con
     await sendToChannel(client, channelId, embed);
     log.info("Posted Summon of the Month");
   });
-}
-
-async function sendToChannel(client: Client, channelId: string, embed: EmbedBuilder): Promise<void> {
-  try {
-    const channel = await client.channels.fetch(channelId);
-    if (channel?.isTextBased()) {
-      await (channel as TextChannel).send({ embeds: [embed] });
-    } else {
-      log.warn(`Announcement channel ${channelId} is not a text channel`);
-    }
-  } catch (err) {
-    log.error(`Failed to send scheduled post: ${err instanceof Error ? err.message : String(err)}`);
-  }
 }
