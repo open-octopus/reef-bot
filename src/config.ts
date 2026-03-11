@@ -11,6 +11,14 @@ const ConfigSchema = z.object({
   gatewayUrl: z.string().url().default("ws://localhost:19789"),
   /** Octo entity ID for Summon routing */
   octoEntityId: z.string().default("entity_octo_mascot"),
+  /** Optional channel ID for new-member welcome messages */
+  welcomeChannelId: z.string().optional(),
+  /** Optional channel ID for scheduled announcements and webhook notifications */
+  announcementChannelId: z.string().optional(),
+  /** Optional port for the webhook HTTP server */
+  webhookPort: z.coerce.number().int().min(1).max(65535).optional(),
+  /** Optional secret for verifying GitHub webhook signatures */
+  webhookSecret: z.string().optional(),
 });
 
 export type Config = z.infer<typeof ConfigSchema>;
@@ -22,5 +30,9 @@ export function loadConfig(): Config {
     guildId: process.env.REEF_GUILD_ID || undefined,
     gatewayUrl: process.env.INK_GATEWAY_URL || "ws://localhost:19789",
     octoEntityId: process.env.OCTO_ENTITY_ID || "entity_octo_mascot",
+    welcomeChannelId: process.env.WELCOME_CHANNEL_ID || undefined,
+    announcementChannelId: process.env.ANNOUNCEMENT_CHANNEL_ID || undefined,
+    webhookPort: process.env.WEBHOOK_PORT || undefined,
+    webhookSecret: process.env.WEBHOOK_SECRET || undefined,
   });
 }

@@ -6,6 +6,7 @@ import { SessionStore } from "../session/session-store.js";
 import { ChannelQueue } from "../streaming/queue.js";
 import { handleMessageCreate } from "./events/message-create.js";
 import { handleInteractionCreate } from "./events/interaction-create.js";
+import { handleGuildMemberAdd } from "./events/guild-member-add.js";
 import { getCommands, getCommandHandlers } from "./commands/index.js";
 
 const log = createConsola({ defaults: { tag: "discord" } });
@@ -26,6 +27,7 @@ export function createBot(ctx: BotContext) {
     intents: [
       GatewayIntentBits.Guilds,
       GatewayIntentBits.GuildMessages,
+      GatewayIntentBits.GuildMembers,
       GatewayIntentBits.DirectMessages,
       GatewayIntentBits.MessageContent,
     ],
@@ -41,6 +43,10 @@ export function createBot(ctx: BotContext) {
 
   client.on("interactionCreate", (interaction) => {
     void handleInteractionCreate(interaction, ctx, commandHandlers);
+  });
+
+  client.on("guildMemberAdd", (member) => {
+    void handleGuildMemberAdd(member, ctx);
   });
 
   client.once("ready", (c) => {

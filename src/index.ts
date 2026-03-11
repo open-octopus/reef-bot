@@ -4,6 +4,10 @@ import { GatewayClient } from "./gateway-client.js";
 import { createBot } from "./discord/bot.js";
 import { SessionStore } from "./session/session-store.js";
 import { ChannelQueue } from "./streaming/queue.js";
+import { Scheduler } from "./scheduler/scheduler.js";
+import { registerScheduledPosts } from "./scheduler/scheduled-posts.js";
+import { createWebhookServer } from "./webhooks/server.js";
+import { createGitHubWebhookHandler } from "./webhooks/github-webhook.js";
 
 const log = createConsola({ defaults: { tag: "reef-bot" } });
 
@@ -49,10 +53,26 @@ async function main(): Promise<void> {
   const bot = createBot({ config, gateway, sessions, queue });
   await bot.start();
 
+  // Set up scheduled posts (Realm of the Week, Summon of the Month)
+  const scheduler = new Scheduler();
+  registerScheduledPosts(scheduler, bot.client, config);
+  scheduler.start();
+
+  // Set up GitHub webhook server if port is configured
+  let webhookServer: { start(): Promise<void>; stop(): Promise<void> } | undefined;
+  if (config.webhookPort) {
+    const webhookHandler = createGitHubWebhookHandler(bot.client, config);
+    webhookServer = createWebhookServer(config.webhookPort, webhookHandler, config.webhookSecret);
+    await webhookServer.start();
+    log.info(`Webhook server started on port ${config.webhookPort}`);
+  }
+
   // Graceful shutdown
   const shutdown = async (signal: string) => {
     log.info(`Received ${signal}, shutting down...`);
     clearInterval(pruneInterval);
+    scheduler.stop();
+    if (webhookServer) await webhookServer.stop();
     await bot.stop();
     await gateway.disconnect();
     sessions.clear();
