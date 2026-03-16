@@ -16,7 +16,7 @@
   <a href="https://github.com/open-octopus/reef-bot/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License"></a>
   <a href="#"><img src="https://img.shields.io/badge/Status-Alpha-orange?style=for-the-badge" alt="Status"></a>
   <a href="https://github.com/open-octopus/openoctopus"><img src="https://img.shields.io/badge/Core_Repo-OpenOctopus-6C3FA0?style=for-the-badge" alt="Core"></a>
-  <a href="https://discord.gg/openoctopus"><img src="https://img.shields.io/badge/Discord-The_Reef-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
+  <a href="https://discord.gg/mwNTk8g5fV"><img src="https://img.shields.io/badge/Discord-The_Reef-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
 </p>
 
 ---
@@ -25,7 +25,7 @@
 
 ## What is reef-bot?
 
-**reef-bot** is the official Discord bot for [The Reef](https://discord.gg/openoctopus), the OpenOctopus community server. Unlike a typical moderation bot, reef-bot is a **summoned Octo agent** — the project mascot brought to life through the Summon engine.
+**reef-bot** is the official Discord bot for [The Reef](https://discord.gg/mwNTk8g5fV), the OpenOctopus community server. Unlike a typical moderation bot, reef-bot is a **summoned Octo agent** — the project mascot brought to life through the Summon engine.
 
 Octo lives in The Reef, answers questions about OpenOctopus, helps newcomers get started, showcases realm packages, and occasionally drops octopus-themed wisdom.
 
@@ -158,7 +158,7 @@ pnpm test
 
 ## Contributing
 
-reef-bot is in the planning phase. Join [The Reef (Discord)](https://discord.gg/openoctopus) to discuss the design, or open an issue with feature ideas.
+reef-bot is in the planning phase. Join [The Reef (Discord)](https://discord.gg/mwNTk8g5fV) to discuss the design, or open an issue with feature ideas.
 
 See [CONTRIBUTING.md](https://github.com/open-octopus/.github/blob/main/CONTRIBUTING.md) for general guidelines.
 

@@ -46,7 +46,7 @@ export const helpCommand: CommandHandler = {
           value: [
             "[GitHub](https://github.com/open-octopus/openoctopus)",
             "[Documentation](https://openoctopus.club)",
-            "[Discord Community](https://discord.gg/openoctopus)",
+            "[Discord Community](https://discord.gg/mwNTk8g5fV)",
           ].join(" | "),
         },
       )
