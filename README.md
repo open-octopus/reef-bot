@@ -135,8 +135,9 @@ pnpm test
 | Variable | Description |
 |----------|-------------|
 | `DISCORD_BOT_TOKEN` | Discord bot token (from Discord Developer Portal) |
+| `DISCORD_CLIENT_ID` | Discord application/client ID for slash command registration |
 | `INK_GATEWAY_URL` | ink gateway WebSocket URL (`ws://localhost:19789`) |
-| `DISCORD_GUILD_ID` | The Reef server ID (for slash command registration) |
+| `REEF_GUILD_ID` | Optional The Reef server ID for guild-scoped slash commands |
 
 ## Roadmap
 
